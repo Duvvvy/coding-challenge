@@ -3,7 +3,8 @@ import {
     filterByListOfAccountTypes,
     filterByListOfValueType,
     sumReduce,
-    convertToCurrency
+    convertToCurrency,
+    convertToPercentage
   } from './Calculator';
   
   test('return only records that are in list of categories function', () => {
@@ -144,4 +145,18 @@ import {
     let unformattedNumber3 = 50;
     let formattedNumber3 = convertToCurrency(unformattedNumber3);
     expect(formattedNumber3).toBe("$50.00")
+  });
+
+test('return percentage', () =>{
+    let unformattedNumber1 = -0.22009100000001;//Accept long numbers
+    let formattedNumber1 = convertToPercentage(unformattedNumber1);
+    expect(formattedNumber1).toBe("-22%")
+
+    let unformattedNumber2 = 0.994;//Round down
+    let formattedNumber2 = convertToPercentage(unformattedNumber2);
+    expect(formattedNumber2).toBe("99%")
+
+    let unformattedNumber3 = 0.995;//Round up
+    let formattedNumber3 = convertToPercentage(unformattedNumber3);
+    expect(formattedNumber3).toBe("100%")
 });
