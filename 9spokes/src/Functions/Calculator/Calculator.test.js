@@ -1,7 +1,8 @@
 import {
     filterByListOfCategories, 
     filterByListOfAccountTypes,
-    filterByListOfValueType
+    filterByListOfValueType,
+    sumReduce
   } from './Calculator';
   
   test('return only records that are in list of categories function', () => {
@@ -106,4 +107,26 @@ import {
     );
   });
 
-  
+  test('calculate total_value from test data using array reducer pattern', () => {
+    let testSet1 = 
+    [
+        {"total_value": 1295.99},
+        {"total_value": 1},
+        {"total_value": -12.17},
+        {"total_value": 5.22},
+        {"total_value": 3.0000},
+    ]
+    let total1 = sumReduce(testSet1)
+    expect(total1).toStrictEqual(1293.04);
+
+    let testSet2 = 
+    [
+        {"total_value": 1295.99},
+        {"total_value": 1},
+        {"total_value": -12.17},
+        {"total_value": 5.22},
+        {"total_value": 3.0000012},
+    ]
+    let total2 = sumReduce(testSet2)
+    expect(total2).toStrictEqual(1293.0400012);
+});

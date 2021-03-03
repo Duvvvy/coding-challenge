@@ -9,3 +9,7 @@ export function filterByListOfAccountTypes(data, listOfAccountTypes){//Only retu
 export function filterByListOfValueType(data, listOfValueTypes){
     return data.filter(company => listOfValueTypes.includes(company.value_type))
 }
+
+export function sumReduce(data){
+    
+}
