@@ -36,10 +36,17 @@ export function getExpenses(data){
     return sumReduce(filterByListOfCategories(data, ['expense']))
 }
 
+export function getGrossProfitMargin(data, revenue) {
+    let allSales = filterByListOfAccountTypes(data, ['sales'])
+    let debitSales = filterByListOfValueType(allSales, ['debit'])
+    let grossProfit = sumReduce(debitSales);
+    return grossProfit / revenue;
+}
+
 export function getJsonReport(data){
     let revenue = getRevenue(data)
     let expenses = getExpenses(data)
-    let grossProfitMargin = 0
+    let grossProfitMargin = getGrossProfitMargin(data, revenue)
     let netProfitMargin = 0
     let workingCapitalRatio = 0
     return {
