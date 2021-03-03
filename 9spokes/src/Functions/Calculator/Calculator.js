@@ -28,23 +28,37 @@ export function convertToPercentage(number){
     return formatter.format(number);
 }
 
-export function getRevenue(data){
+function getRevenue(data){
     return sumReduce(filterByListOfCategories(data, ['revenue']))
 }
 
-export function getExpenses(data){
+function getExpenses(data){
     return sumReduce(filterByListOfCategories(data, ['expense']))
 }
 
-export function getGrossProfitMargin(data, revenue) {
+function getGrossProfitMargin(data, revenue) {
     let allSales = filterByListOfAccountTypes(data, ['sales'])
     let debitSales = filterByListOfValueType(allSales, ['debit'])
     let grossProfit = sumReduce(debitSales);
     return grossProfit / revenue;
 }
 
-export function getNetProfitMargin(revenue, expenses) {
+function getNetProfitMargin(revenue, expenses) {
     return (revenue - expenses) / revenue;
+}
+
+function getCapital(data, validAccountTypes, validAccountCategories, minuendValueType, subtrahendValueType){//minuend means to be subtracted from, subtrahend means to subtract
+    let allRecordsInCategories = filterByListOfCategories(data, validAccountCategories)
+    let filteredRecordsByAccountTypes = filterByListOfAccountTypes(allRecordsInCategories, validAccountTypes)
+    let minuend = sumReduce(filterByListOfValueType(filteredRecordsByAccountTypes, minuendValueType));
+    let subtrahend = sumReduce(filterByListOfValueType(filteredRecordsByAccountTypes, subtrahendValueType));
+    return minuend - subtrahend;
+}
+
+function getWorkingCapitalRatio(data) {
+    let assets = getCapital(data, ['current', 'bank', 'current_accounts_receivable'], ['assets'], ['credit'], ['debit'])
+    let liabilities = getCapital(data, ['current', 'current_accounts_payable'], ['liability'], ['debit'], ['credit'])
+    return assets / liabilities;
 }
 
 export function getJsonReport(data){
@@ -52,7 +66,7 @@ export function getJsonReport(data){
     let expenses = getExpenses(data)
     let grossProfitMargin = getGrossProfitMargin(data, revenue)
     let netProfitMargin = getNetProfitMargin(revenue, expenses)
-    let workingCapitalRatio = 0
+    let workingCapitalRatio = getWorkingCapitalRatio(data)
     return {
         "revenue": convertToCurrency(revenue),
         "expenses": convertToCurrency(expenses),
