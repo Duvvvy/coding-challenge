@@ -39,6 +39,41 @@ import {
   });
   
   test('return only records that are in list of account types function', () => {
+    let testData = 
+    [
+        {"account_type": "sales"},
+        {"account_type": "bank"},
+        {"account_type": "current_accounts_receivable"},
+        {"account_type": "current"},
+        {"account_type": "current"},
+        {"account_type": "current_accounts_payable"},
+        {"account_type": "current_accounts_receivable"}
+    ]
+    let assets = filterByListOfAccountTypes(testData, ['sales'])
+    expect(assets).toStrictEqual(
+        [
+            {"account_type": "sales"}
+        ]
+    );
+
+    let liability = filterByListOfAccountTypes(testData, ['current_accounts_receivable'])
+    expect(liability).toStrictEqual(
+        [
+            {"account_type": "current_accounts_receivable"},
+            {"account_type": "current_accounts_receivable"}
+        ]
+    );
+
+    let revenueExpense = filterByListOfAccountTypes(testData, ['current', 'bank', 'current_accounts_receivable'])
+    expect(revenueExpense).toStrictEqual(
+        [
+            {"account_type": "bank"},
+            {"account_type": "current_accounts_receivable"},
+            {"account_type": "current"},
+            {"account_type": "current"},
+            {"account_type": "current_accounts_receivable"}
+        ]
+    );
 
   });
   
