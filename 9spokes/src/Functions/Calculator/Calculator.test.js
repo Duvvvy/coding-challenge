@@ -12,6 +12,12 @@ import {
         {"account_category": "assets"},
         {"account_category": "expense"}
     ]
+    let assets = filterByListOfCategories(testData, ['assets'])
+    expect(assets).toStrictEqual(
+        [
+            {"account_category": "assets"}
+        ]
+    );
 
   });
   
