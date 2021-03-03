@@ -1,8 +1,10 @@
+import Records from './Components/Table';
+import 'antd/dist/antd.css';
+
+
 function App() {
   return (
-    <>
-    Hello, world!
-    </>
+    <Records></Records>
   );
 }
 
