@@ -79,7 +79,30 @@ import {
   });
   
   test('return only records that are in list of value types function', () => {
+    let testData = 
+    [
+        {"value_type": "credit"},
+        {"value_type": "debit"},
+        {"value_type": "debit"},
+        {"value_type": "debit"},
+        {"value_type": "credit"},
+    ]
+    let assets = filterByListOfValueType(testData, ['credit'])
+    expect(assets).toStrictEqual(
+        [
+            {"value_type": "credit"},
+            {"value_type": "credit"},
+        ]
+    );
 
+    let liability = filterByListOfValueType(testData, ['debit'])
+    expect(liability).toStrictEqual(
+        [
+            {"value_type": "debit"},
+            {"value_type": "debit"},
+            {"value_type": "debit"}
+        ]
+    );
   });
 
   
