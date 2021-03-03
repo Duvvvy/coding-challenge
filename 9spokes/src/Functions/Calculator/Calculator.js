@@ -18,7 +18,7 @@ export function sumReduce(data){
 export function convertToCurrency(number){
     return number.toLocaleString("en-AU", { 
         style: "currency", 
-        currency: "USD"//Task requested USD format rather than AUD format
+        currency: "AUD"
       })
 }
 
