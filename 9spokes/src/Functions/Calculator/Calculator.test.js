@@ -19,6 +19,23 @@ import {
         ]
     );
 
+    let liability = filterByListOfCategories(testData, ['liability'])
+    expect(liability).toStrictEqual(
+        [
+            {"account_category": "liability"},
+            {"account_category": "liability"}
+        ]
+    );
+
+    let revenueExpense = filterByListOfCategories(testData, ['revenue', 'expense'])
+    expect(revenueExpense).toStrictEqual(
+        [
+            {"account_category": "revenue"},
+            {"account_category": "expense"},
+            {"account_category": "expense"}
+        ]
+    );
+
   });
   
   test('return only records that are in list of account types function', () => {
