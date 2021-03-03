@@ -28,9 +28,17 @@ export function convertToPercentage(number){
     return formatter.format(number);
 }
 
+export function getRevenue(data){
+    return sumReduce(filterByListOfCategories(data, ['revenue']))
+}
+
+export function getExpenses(data){
+    return sumReduce(filterByListOfCategories(data, ['expense']))
+}
+
 export function getJsonReport(data){
-    let revenue = 0
-    let expenses = 0
+    let revenue = getRevenue(data)
+    let expenses = getExpenses(data)
     let grossProfitMargin = 0
     let netProfitMargin = 0
     let workingCapitalRatio = 0
