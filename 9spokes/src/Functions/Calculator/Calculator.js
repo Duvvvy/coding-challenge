@@ -14,3 +14,10 @@ export function sumReduce(data){
     let reducer = (accumulator, record) => record.total_value + accumulator;
     return data.reduce(reducer, 0)
 }
+
+export function convertToCurrency(number){
+    return number.toLocaleString("en-AU", { 
+        style: "currency", 
+        currency: "USD"//Task requested USD format rather than AUD format
+      })
+}
