@@ -3,6 +3,15 @@ import {
   } from './Calculator';
   
   test('return only records that are in list of categories function', () => {
+    let testData = 
+    [
+        {"account_category": "revenue"},
+        {"account_category": "expense"},
+        {"account_category": "liability"},
+        {"account_category": "liability"},
+        {"account_category": "assets"},
+        {"account_category": "expense"}
+    ]
 
   });
   
