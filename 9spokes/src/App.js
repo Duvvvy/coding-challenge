@@ -1,8 +1,8 @@
+import Records from './Components/Table';
+
 function App() {
   return (
-    <>
-    Hello, world!
-    </>
+    <Records></Records>
   );
 }
 
