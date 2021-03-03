@@ -43,11 +43,15 @@ export function getGrossProfitMargin(data, revenue) {
     return grossProfit / revenue;
 }
 
+export function getNetProfitMargin(revenue, expenses) {
+    return (revenue - expenses) / revenue;
+}
+
 export function getJsonReport(data){
     let revenue = getRevenue(data)
     let expenses = getExpenses(data)
     let grossProfitMargin = getGrossProfitMargin(data, revenue)
-    let netProfitMargin = 0
+    let netProfitMargin = getNetProfitMargin(revenue, expenses)
     let workingCapitalRatio = 0
     return {
         "revenue": convertToCurrency(revenue),
