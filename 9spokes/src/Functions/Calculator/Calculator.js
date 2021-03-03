@@ -27,3 +27,18 @@ export function convertToPercentage(number){
     var formatter = new Intl.NumberFormat("en-US", option);
     return formatter.format(number);
 }
+
+export function getJsonReport(data){
+    let revenue = 0
+    let expenses = 0
+    let grossProfitMargin = 0
+    let netProfitMargin = 0
+    let workingCapitalRatio = 0
+    return {
+        "revenue": convertToCurrency(revenue),
+        "expenses": convertToCurrency(expenses),
+        "grossProfitMargin": convertToPercentage(grossProfitMargin),
+        "netProfitMargin": convertToPercentage(netProfitMargin),
+        "workingCapitalRatio": convertToPercentage(workingCapitalRatio)
+    };
+}
