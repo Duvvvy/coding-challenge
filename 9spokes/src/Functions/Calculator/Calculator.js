@@ -5,3 +5,7 @@ export function filterByListOfCategories(data, categoryList){// Only returns rec
 export function filterByListOfAccountTypes(data, listOfAccountTypes){//Only return companies of given type/s in list.
     return data.filter(company => listOfAccountTypes.includes(company.account_type));
 }
+
+export function filterByListOfValueType(data, listOfValueTypes){
+    return data.filter(company => listOfValueTypes.includes(company.value_type))
+}

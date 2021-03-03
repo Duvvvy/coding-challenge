@@ -1,6 +1,7 @@
 import {
     filterByListOfCategories, 
-    filterByListOfAccountTypes
+    filterByListOfAccountTypes,
+    filterByListOfValueType
   } from './Calculator';
   
   test('return only records that are in list of categories function', () => {
