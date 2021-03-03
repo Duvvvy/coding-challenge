@@ -2,7 +2,8 @@ import {
     filterByListOfCategories, 
     filterByListOfAccountTypes,
     filterByListOfValueType,
-    sumReduce
+    sumReduce,
+    convertToCurrency
   } from './Calculator';
   
   test('return only records that are in list of categories function', () => {
@@ -129,4 +130,18 @@ import {
     ]
     let total2 = sumReduce(testSet2)
     expect(total2).toStrictEqual(1293.0400012);
+  });
+
+  test('return numbers in AUD format', () =>{
+    let unformattedNumber1 = 519169;
+    let formattedNumber1 = convertToCurrency(unformattedNumber1);
+    expect(formattedNumber1).toBe("$519,169.00")
+
+    let unformattedNumber2 = 100.0;
+    let formattedNumber2 = convertToCurrency(unformattedNumber2);
+    expect(formattedNumber2).toBe("$100.00")
+
+    let unformattedNumber3 = 50;
+    let formattedNumber3 = convertToCurrency(unformattedNumber3);
+    expect(formattedNumber3).toBe("$50.00")
 });
