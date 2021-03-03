@@ -21,3 +21,9 @@ export function convertToCurrency(number){
         currency: "USD"//Task requested USD format rather than AUD format
       })
 }
+
+export function convertToPercentage(number){
+    let option = {style: 'percent'};
+    var formatter = new Intl.NumberFormat("en-US", option);
+    return formatter.format(number);
+}
