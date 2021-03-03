@@ -11,5 +11,6 @@ export function filterByListOfValueType(data, listOfValueTypes){
 }
 
 export function sumReduce(data){
-    
+    let reducer = (accumulator, record) => record.total_value + accumulator;
+    return data.reduce(reducer, 0)
 }
